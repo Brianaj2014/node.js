@@ -6,20 +6,3 @@ const options = {
     json: true
 };
 
-rp(options)
-    .then(payload => {
-        let extractedArticleArr = [];
-
-        payload.data.children.forEach(article => {
-            extractedArticleArr.push({
-                url: article.data.url,
-                author: article.data.author
-            });
-        });
-
-        fs.writeFile("popular-articles.json", JSON.stringify(extractedArticleArr), (err) => {
-            if (err) throw err;
-            console.log("It's Done");
-        });
-    })
-    .catch(err => console.log(err));
